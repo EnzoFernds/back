@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace WebApplication1.Models
+public class Role : IdentityRole
 {
-    public class Role : IdentityRole
-    {
-        public string Description { get; set; }
-    }
+    public int RoleID { get; set; }
+    public string RoleName { get; set; }
+    public string Description { get; set; }
 }

@@ -1,12 +1,22 @@
-﻿using Microsoft.AspNetCore.Identity;
-using System.ComponentModel.DataAnnotations;
+﻿
+using Microsoft.AspNetCore.Identity;
 
-namespace WebApplication1.Models
+public enum UserRole
 {
-    public class User : IdentityUser
-    {
-        public string Nom { get; set; }
-        public string Prenom { get; set; }
-        public DateTime DateNaissance { get; set; }
-    }
+    Client,
+    Restaurateur,
+    Administrateur
+}
+
+public class User : IdentityUser
+{
+    public int UserId { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string Email { get; set; }
+    public UserRole Role { get; set; }
+
+    public virtual List<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual List<Review> Reviews { get; set; } = new List<Review>();
 }

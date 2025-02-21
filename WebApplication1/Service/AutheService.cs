@@ -1,21 +1,21 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Text.Unicode;
 using WebApplication1.DTO;
-using WebApplication1.Models;
+
 
 namespace WebApplication1.Service
 {
     public class AutheService
     {
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<Role> _roleManager;
+        private readonly Microsoft.AspNetCore.Identity.UserManager<User> _userManager;
+        private readonly Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
-        public AutheService(UserManager<User> userManager, RoleManager<Role> roleManager, IConfiguration configuration)
+        public AutheService(Microsoft.AspNetCore.Identity.UserManager<User> userManager, Microsoft.AspNetCore.Identity.RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -26,8 +26,8 @@ namespace WebApplication1.Service
             User userToAdd = new User()
             {
                 Email = user.Email,
-                Nom = user.Nom,
-                Prenom = user.Prenom,
+                LastName = user.Nom,
+                FirstName = user.Prenom,
                 UserName = user.Email
             };
             var result = await _userManager.CreateAsync(userToAdd,user.Password);
@@ -39,16 +39,16 @@ namespace WebApplication1.Service
                 Name = role.Nom,
                 Description = role.Description
             };
+
             var result = await _roleManager.CreateAsync(addRoles);
-            if (result.Succeeded)
+
+            if (!result.Succeeded)
             {
-                return;
-            }
-            else
-            {
-                throw new BadHttpRequestException(result.Errors.FirstOrDefault().Description);
+                var errorMessage = result.Errors.FirstOrDefault()?.Description ?? "Erreur inconnue lors de la création du rôle";
+                throw new BadHttpRequestException(errorMessage);
             }
         }
+
 
         public async Task<string> Login(LoginDTO login)
         {

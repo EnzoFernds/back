@@ -2,10 +2,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using RestaurantManagement;
 using System.Text;
-using WebApplication1.CourseDbContext;
-using WebApplication1.Models;
-using WebApplication1.Repositories;
+using WebApplication1.Data;
 using WebApplication1.Service;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +17,9 @@ builder.Services.AddCors(option =>
     });
 });
 
+// Ajouter les services pour la base de données
+builder.Services.AddDbContext<RestaurantContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -25,13 +27,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<TeacherRepository>();
-builder.Services.AddScoped<CourseRepository>();
-builder.Services.AddScoped<SubjectRepository>();
-builder.Services.AddDbContext<CourseContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<RestaurantRepository>();
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<MenuItemRepository>();
+builder.Services.AddScoped<OrderItemRepository>();
+builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<ReviewRepository>();
+builder.Services.AddDbContext<RestaurantContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<AutheService>();
+builder.Services.AddIdentityCore<User>();
 builder.Services.AddIdentity<User, Role>()
-    .AddEntityFrameworkStores<CourseContext>()
+    .AddEntityFrameworkStores<RestaurantContext>()
     .AddDefaultTokenProviders();
 
 var jwtSettings = builder.Configuration.GetSection("Jwt");

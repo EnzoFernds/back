@@ -1,8 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using WebApplication1.DTO;
-using WebApplication1.Models;
-using WebApplication1.Repositories;
 using WebApplication1.Service;
 
 namespace WebApplication1.Controllers
