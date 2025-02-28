@@ -36,7 +36,7 @@ builder.Services.AddScoped<ReviewRepository>();
 builder.Services.AddDbContext<RestaurantContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 builder.Services.AddScoped<AutheService>();
 builder.Services.AddIdentityCore<User>();
-builder.Services.AddIdentity<User, Role>()
+builder.Services.AddIdentity<User, IdentityRole>()
     .AddEntityFrameworkStores<RestaurantContext>()
     .AddDefaultTokenProviders();
 

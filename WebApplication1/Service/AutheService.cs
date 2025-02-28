@@ -52,17 +52,21 @@ namespace WebApplication1.Service
 
         public async Task<string> Login(LoginDTO login)
         {
-            var user = await _userManager.FindByEmailAsync(login.Email);
-            if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
+            var user = await _userManager.FindByNameAsync(login.Email);
+            if (user == null)
             {
-                var token = GenerateJwtToken(user);
-                return token;
+                throw new UnauthorizedAccessException($"Utilisateur introuvable : {login.Email}");
             }
-            else
+
+            var isPasswordValid = await _userManager.CheckPasswordAsync(user, login.Password);
+            if (!isPasswordValid)
             {
-                throw new UnauthorizedAccessException($"Failed to login{login.Email}");
+                throw new UnauthorizedAccessException("Mot de passe incorrect !");
             }
+
+            return GenerateJwtToken(user);
         }
+
 
         public string GenerateJwtToken(User user) 
         {
