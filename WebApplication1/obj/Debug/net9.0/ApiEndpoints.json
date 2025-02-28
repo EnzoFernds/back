@@ -28,8 +28,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "menuItem",
-        "Type": "MenuItem",
+        "Name": "menuItemDTO",
+        "Type": "CreateMenuItemDTO",
         "IsRequired": true
       }
     ],

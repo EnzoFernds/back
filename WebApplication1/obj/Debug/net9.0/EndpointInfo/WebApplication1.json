@@ -143,17 +143,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             }
           }
@@ -941,6 +941,35 @@
   },
   "components": {
     "schemas": {
+      "CreateMenuItemDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "category": {
+            "type": "string",
+            "nullable": true
+          },
+          "isAvailable": {
+            "type": "boolean"
+          },
+          "restaurantId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginDTO": {
         "type": "object",
         "properties": {
