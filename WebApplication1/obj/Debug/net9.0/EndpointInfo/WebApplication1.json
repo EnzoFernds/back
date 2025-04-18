@@ -223,17 +223,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/MenuItem"
+                "$ref": "#/components/schemas/CreateMenuItemDTO"
               }
             }
           }

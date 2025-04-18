@@ -75,8 +75,8 @@
         "IsRequired": true
       },
       {
-        "Name": "menuItem",
-        "Type": "MenuItem",
+        "Name": "dto",
+        "Type": "CreateMenuItemDTO",
         "IsRequired": true
       }
     ],

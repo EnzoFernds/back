@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace RestaurantManagement.Controllers
@@ -67,11 +68,21 @@ namespace RestaurantManagement.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateMenuItem(int id, MenuItem menuItem)
+        public ActionResult UpdateMenuItem(int id, [FromBody] CreateMenuItemDTO dto)
         {
-            if (id != menuItem.MenuItemId)
-                return BadRequest();
-            _menuItemRepository.Update(menuItem);
+            var existing = _menuItemRepository.GetById(id);
+            if (existing == null) return NotFound();
+
+            // Mise à jour des champs
+            existing.Name = dto.Name;
+            existing.Description = dto.Description;
+            existing.Price = dto.Price;
+            existing.Category = dto.Category;
+            existing.IsAvailable = dto.IsAvailable;
+            existing.RestaurantId = dto.RestaurantId;
+
+            _menuItemRepository.Update(existing);
+
             return NoContent();
         }
 
