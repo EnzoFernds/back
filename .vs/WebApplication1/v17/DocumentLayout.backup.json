@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\projet dev\\back\\webapplication1\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\projet dev\\back\\webapplication1\\controllers\\menuitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\menuitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\projet dev\\back\\webapplication1\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\projet dev\\back\\webapplication1\\service\\autheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\service\\autheservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,6 +46,45 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "MenuItem.cs",
+              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Models\\MenuItem.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\MenuItem.cs",
+              "ToolTip": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Models\\MenuItem.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\MenuItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T15:40:43.936Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MenuItemController.cs",
+              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Controllers\\MenuItemController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\MenuItemController.cs",
+              "ToolTip": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Controllers\\MenuItemController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\MenuItemController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowCQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T15:31:35.412Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Controllers\\UserController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-28T15:31:12.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "AutheService.cs",
               "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Service\\AutheService.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Service\\AutheService.cs",
@@ -46,7 +97,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "dbo.AspNetUsers [Donn\u00E9es]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BDDResto/True/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "dbo.AspNetUsers [Donn\u00E9es]",
@@ -56,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Program.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
@@ -69,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "Role.cs",
               "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\Models\\Role.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Models\\Role.cs",
@@ -81,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RestaurantContext.cs",
               "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\PROJET DEV\\back\\WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
               "RelativeDocumentMoniker": "WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
