@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace RestaurantManagement.Controllers
@@ -30,18 +31,58 @@ namespace RestaurantManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateMenuItem(MenuItem menuItem)
+        public async Task<ActionResult> CreateMenuItem([FromBody] CreateMenuItemDTO menuItemDTO)
         {
+            // Vérifier si un menu avec le même nom existe déjà pour éviter les doublons
+            var existingMenuItem = _menuItemRepository.GetAll().FirstOrDefault(m => m.Name == menuItemDTO.Name && m.RestaurantId == menuItemDTO.RestaurantId);
+            if (existingMenuItem != null)
+            {
+                return BadRequest(new { message = "Un élément du menu avec ce nom existe déjà pour ce restaurant." });
+            }
+
+            // Création de l'entité MenuItem à partir du DTO
+            var menuItem = new MenuItem
+            {
+                Name = menuItemDTO.Name,
+                Description = menuItemDTO.Description,
+                Price = menuItemDTO.Price,
+                Category = menuItemDTO.Category,
+                IsAvailable = menuItemDTO.IsAvailable,
+                RestaurantId = menuItemDTO.RestaurantId
+            };
+
+            // Ajout à la base de données
             _menuItemRepository.Add(menuItem);
-            return CreatedAtAction(nameof(GetMenuItemById), new { id = menuItem.MenuItemId }, menuItem);
+
+            // Retourne une réponse avec les données essentielles
+            return CreatedAtAction(nameof(GetMenuItemById), new { id = menuItem.MenuItemId }, new
+            {
+                menuItem.MenuItemId,
+                menuItem.Name,
+                menuItem.Description,
+                menuItem.Price,
+                menuItem.Category,
+                menuItem.IsAvailable,
+                menuItem.RestaurantId
+            });
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateMenuItem(int id, MenuItem menuItem)
+        public ActionResult UpdateMenuItem(int id, [FromBody] CreateMenuItemDTO dto)
         {
-            if (id != menuItem.MenuItemId)
-                return BadRequest();
-            _menuItemRepository.Update(menuItem);
+            var existing = _menuItemRepository.GetById(id);
+            if (existing == null) return NotFound();
+
+            // Mise à jour des champs
+            existing.Name = dto.Name;
+            existing.Description = dto.Description;
+            existing.Price = dto.Price;
+            existing.Category = dto.Category;
+            existing.IsAvailable = dto.IsAvailable;
+            existing.RestaurantId = dto.RestaurantId;
+
+            _menuItemRepository.Update(existing);
+
             return NoContent();
         }
 

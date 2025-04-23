@@ -31,6 +31,7 @@
 *.out
 *.app
 
+<<<<<<< HEAD
 # Visual Studio
 .vs/
 obj/
@@ -40,3 +41,27 @@ bin/
 *.cache
 *.dbmdl
 *.log
+=======
+# Build files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS config files
+.vs/
+*.vsidx
+*.vssscc
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Others
+*.db
+.env
+>>>>>>> origin/MenuItem

@@ -14,7 +14,7 @@ namespace RestaurantManagement.Services
 
         public MenuItem CreateMenuItem(MenuItem menuItem)
         {
-            var existingItem = _menuItemRepository.GetByName(menuItem.Name);
+            var existingItem = _menuItemRepository.GetByName(menuItem.Name, menuItem.RestaurantId);
             if (existingItem != null)
                 throw new Exception("Menu item already exists.");
 
