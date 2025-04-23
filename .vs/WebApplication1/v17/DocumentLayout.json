@@ -3,6 +3,9 @@
   "WorkspaceRootPath": "D:\\devoirs\\DEV\\back\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BDDResto/True/SqlTable/dbo.MenuItems.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|d:\\devoirs\\dev\\back\\webapplication1\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\menuitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,6 +49,16 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "dbo.MenuItems [Donn\u00E9es]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BDDResto/True/SqlTable/dbo.MenuItems.sql",
+              "ToolTip": "dbo.MenuItems [Donn\u00E9es]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-23T19:55:42.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MenuItem.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Models\\MenuItem.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Models\\MenuItem.cs",
@@ -58,7 +71,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "MenuItemController.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\MenuItemController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\MenuItemController.cs",
@@ -70,7 +83,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\UserController.cs",
@@ -82,7 +95,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AutheService.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Service\\AutheService.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Service\\AutheService.cs",
@@ -94,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "dbo.AspNetUsers.sql",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BDDResto/True/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/BDDResto/True/SqlTable/dbo.AspNetUsers.sql",
@@ -103,7 +116,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Program.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
@@ -115,7 +128,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Role.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Models\\Role.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Models\\Role.cs",
@@ -127,7 +140,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "RestaurantContext.cs",
               "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
               "RelativeDocumentMoniker": "WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",

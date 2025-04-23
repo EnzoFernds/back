@@ -30,3 +30,26 @@
 *.exe
 *.out
 *.app
+
+# Build files
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# VS config files
+.vs/
+*.vsidx
+*.vssscc
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# Others
+*.db
+.env
