@@ -1,7 +1,17 @@
-﻿public class CreateReviewDTO
+﻿using System.ComponentModel.DataAnnotations;
+
+public class CreateReviewDTO
 {
+    [Required]
     public int UserId { get; set; }
+
+    [Required]
     public int RestaurantId { get; set; }
-    public int Rating { get; set; } // 1 à 5 étoiles
+
+    [Required]
+    [Range(1, 5, ErrorMessage = "La note doit être entre 1 et 5.")]
+    public int Rating { get; set; }
+
+    [MaxLength(1000)]
     public string Commentaire { get; set; }
 }

@@ -397,15 +397,21 @@
   },
   {
     "ContainingType": "RestaurantManagement.Controllers.ReviewController",
-    "Method": "GetAllReviews",
+    "Method": "CreateReview",
     "RelativePath": "api/Review",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "CreateReviewDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Review, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Review",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -414,22 +420,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "RestaurantManagement.Controllers.ReviewController",
-    "Method": "CreateReview",
-    "RelativePath": "api/Review",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "review",
-        "Type": "Review",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "RestaurantManagement.Controllers.ReviewController",
@@ -471,8 +461,8 @@
         "IsRequired": true
       },
       {
-        "Name": "review",
-        "Type": "Review",
+        "Name": "dto",
+        "Type": "UpdateReviewDTO",
         "IsRequired": true
       }
     ],
@@ -493,6 +483,58 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "RestaurantManagement.Controllers.ReviewController",
+    "Method": "GetByRestaurant",
+    "RelativePath": "api/Review/by-restaurant/{restoId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "restoId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Review, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "RestaurantManagement.Controllers.ReviewController",
+    "Method": "GetByUser",
+    "RelativePath": "api/Review/by-user/{userId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Review, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "WebApplication1.Controllers.AuthController",

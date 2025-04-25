@@ -1,40 +1,83 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace RestaurantManagement.Services
+﻿namespace RestaurantManagement.Services
 {
     public class ReviewService
     {
-        private readonly ReviewRepository _reviewRepository;
+        private readonly ReviewRepository _reviewRepo;
+        private readonly RestaurantRepository _restoRepo;
+        private readonly UserRepository _userRepo;
 
-        public ReviewService(ReviewRepository reviewRepository)
+        public ReviewService(
+            ReviewRepository reviewRepo,
+            RestaurantRepository restoRepo,
+            UserRepository userRepo)
         {
-            _reviewRepository = reviewRepository;
+            _reviewRepo = reviewRepo;
+            _restoRepo = restoRepo;
+            _userRepo = userRepo;
         }
 
-        public Review CreateReview(Review review)
+        public Review CreateReview(CreateReviewDTO dto)
         {
-            _reviewRepository.Add(review);
+            // 1) Vérifications
+            var user = _userRepo.Get(dto.UserId);
+            if (user == null)
+                throw new KeyNotFoundException($"User {dto.UserId} introuvable.");
+
+            var resto = _restoRepo.Get(dto.RestaurantId);
+            if (resto == null)
+                throw new KeyNotFoundException($"Restaurant {dto.RestaurantId} introuvable.");
+
+            if (dto.Rating < 1 || dto.Rating > 5)
+                throw new ArgumentException("La note doit être entre 1 et 5.");
+
+            // 2) Création de l’entité
+            var review = new Review
+            {
+                UserId = dto.UserId,
+                RestaurantId = dto.RestaurantId,
+                Rating = dto.Rating,
+                Comment = dto.Commentaire,
+                DatePosted = DateTime.UtcNow
+            };
+
+            // 3) Persistance
+            _reviewRepo.Add(review);
+
             return review;
         }
 
-        public List<Review> GetReviewsByRestaurant(int restaurantId)
+        public Review GetReviewById(int id)
         {
-            return _reviewRepository.GetByRestaurantId(restaurantId);
+            return _reviewRepo.Get(id);
         }
 
-        public List<Review> GetReviewsByUser(int userId)
+        public List<Review> GetByRestaurant(int restaurantId)
         {
-            return _reviewRepository.GetByUserId(userId);
+            return _reviewRepo.GetByRestaurantId(restaurantId);
+        }
+
+        public List<Review> GetByUser(int userId)
+        {
+            return _reviewRepo.GetByUserId(userId);
+        }
+
+        public void UpdateReview(UpdateReviewDTO dto)
+        {
+            var existing = _reviewRepo.Get(dto.ReviewId);
+            if (existing == null)
+                throw new KeyNotFoundException($"Review {dto.ReviewId} introuvable.");
+
+            existing = dto.ToEntity(existing);
+            _reviewRepo.Update(existing);
         }
 
         public void DeleteReview(int id)
         {
-            var review = _reviewRepository.Get(id);
-            if (review == null)
-                throw new Exception("Review not found.");
+            var existing = _reviewRepo.Get(id);
+            if (existing == null)
+                throw new KeyNotFoundException($"Review {id} introuvable.");
 
-            _reviewRepository.Delete(id);
+            _reviewRepo.Delete(id);
         }
     }
 }

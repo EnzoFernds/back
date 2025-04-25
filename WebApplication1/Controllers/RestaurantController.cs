@@ -30,11 +30,30 @@ namespace RestaurantManagement.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateRestaurant(Restaurant restaurant)
+        public ActionResult<Restaurant> CreateRestaurant([FromBody] CreateRestaurantDTO dto)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            // 1) Construis l’entité minimale
+            var restaurant = new Restaurant
+            {
+                Name = dto.Name,
+                Address = dto.Address,
+                OwnerId = dto.OwnerId
+            };
+
+            // 2) Persiste
             _restaurantRepository.Add(restaurant);
-            return CreatedAtAction(nameof(GetRestaurantById), new { id = restaurant.RestaurantId }, restaurant);
+
+            // 3) Retourne 201 + location
+            return CreatedAtAction(
+                nameof(GetRestaurantById),
+                new { id = restaurant.RestaurantId },
+                restaurant
+            );
         }
+
 
         [HttpPut("{id}")]
         public ActionResult UpdateRestaurant(int id, Restaurant restaurant)

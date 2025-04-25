@@ -1,58 +1,94 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using RestaurantManagement.Services;
 
 namespace RestaurantManagement.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ReviewController : ControllerBase
     {
-        private readonly ReviewRepository _reviewRepository;
+        private readonly ReviewService _reviewService;
 
-        public ReviewController(ReviewRepository reviewRepository)
+        public ReviewController(ReviewService reviewService)
         {
-            _reviewRepository = reviewRepository;
+            _reviewService = reviewService;
         }
 
-        [HttpGet]
-        public ActionResult<List<Review>> GetAllReviews()
+        // POST /api/review
+        [HttpPost]
+        public ActionResult<Review> CreateReview([FromBody] CreateReviewDTO dto)
         {
-            return Ok(_reviewRepository.GetAll());
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            try
+            {
+                var rev = _reviewService.CreateReview(dto);
+                return CreatedAtAction(
+                    nameof(GetReviewById),
+                    new { id = rev.ReviewId },
+                    rev
+                );
+            }
+            catch (KeyNotFoundException knf)
+            {
+                return NotFound(knf.Message);
+            }
+            catch (ArgumentException ae)
+            {
+                return BadRequest(ae.Message);
+            }
         }
 
+        // GET /api/review/{id}
         [HttpGet("{id}")]
         public ActionResult<Review> GetReviewById(int id)
         {
-            var review = _reviewRepository.Get(id);
-            if (review == null)
-                return NotFound();
-            return Ok(review);
+            var rev = _reviewService.GetReviewById(id);
+            if (rev == null) return NotFound();
+            return Ok(rev);
         }
 
-        [HttpPost]
-        public ActionResult CreateReview(Review review)
-        {
-            _reviewRepository.Add(review);
-            return CreatedAtAction(nameof(GetReviewById), new { id = review.ReviewId }, review);
-        }
+        // GET /api/review/by-restaurant/{restoId}
+        [HttpGet("by-restaurant/{restoId}")]
+        public ActionResult<List<Review>> GetByRestaurant(int restoId)
+            => Ok(_reviewService.GetByRestaurant(restoId));
 
+        // GET /api/review/by-user/{userId}
+        [HttpGet("by-user/{userId}")]
+        public ActionResult<List<Review>> GetByUser(int userId)
+            => Ok(_reviewService.GetByUser(userId));
+
+        // PUT /api/review/{id}
         [HttpPut("{id}")]
-        public ActionResult UpdateReview(int id, Review review)
+        public ActionResult UpdateReview(int id, [FromBody] UpdateReviewDTO dto)
         {
-            if (id != review.ReviewId)
-                return BadRequest();
-            _reviewRepository.Update(review);
-            return NoContent();
+            if (id != dto.ReviewId) return BadRequest();
+
+            try
+            {
+                _reviewService.UpdateReview(dto);
+                return NoContent();
+            }
+            catch (KeyNotFoundException knf)
+            {
+                return NotFound(knf.Message);
+            }
         }
 
+        // DELETE /api/review/{id}
         [HttpDelete("{id}")]
         public ActionResult DeleteReview(int id)
         {
-            var review = _reviewRepository.Get(id);
-            if (review == null)
-                return NotFound();
-            _reviewRepository.Delete(id);
-            return NoContent();
+            try
+            {
+                _reviewService.DeleteReview(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException knf)
+            {
+                return NotFound(knf.Message);
+            }
         }
     }
 }
