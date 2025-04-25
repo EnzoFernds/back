@@ -100,15 +100,21 @@
   },
   {
     "ContainingType": "RestaurantManagement.Controllers.OrderController",
-    "Method": "GetAllOrders",
+    "Method": "CreateOrder",
     "RelativePath": "api/Order",
-    "HttpMethod": "GET",
+    "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "CreateOrderDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Order, WebApplication1, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "Order",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -117,22 +123,6 @@
         "StatusCode": 200
       }
     ]
-  },
-  {
-    "ContainingType": "RestaurantManagement.Controllers.OrderController",
-    "Method": "CreateOrder",
-    "RelativePath": "api/Order",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "order",
-        "Type": "Order",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
   },
   {
     "ContainingType": "RestaurantManagement.Controllers.OrderController",
@@ -174,8 +164,8 @@
         "IsRequired": true
       },
       {
-        "Name": "order",
-        "Type": "Order",
+        "Name": "dto",
+        "Type": "UpdateOrderDTO",
         "IsRequired": true
       }
     ],

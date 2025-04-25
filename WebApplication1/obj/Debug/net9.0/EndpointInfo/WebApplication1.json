@@ -266,73 +266,6 @@
         }
       }
     },
-    "/api/Order": {
-      "get": {
-        "tags": [
-          "Order"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Order"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Order"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Order"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Order"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/Order"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/api/Order/{id}": {
       "get": {
         "tags": [
@@ -391,17 +324,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/UpdateOrderDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/UpdateOrderDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/UpdateOrderDTO"
               }
             }
           }
@@ -430,6 +363,54 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Order": {
+      "post": {
+        "tags": [
+          "Order"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOrderDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Order"
+                }
+              }
+            }
           }
         }
       }
@@ -941,6 +922,52 @@
   },
   "components": {
     "schemas": {
+      "CreateOrderDTO": {
+        "required": [
+          "items",
+          "restaurantId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "restaurantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateOrderItemDTO"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrderItemDTO": {
+        "required": [
+          "menuItemId",
+          "quantity"
+        ],
+        "type": "object",
+        "properties": {
+          "menuItemId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
       "LoginDTO": {
         "type": "object",
         "properties": {
@@ -1191,6 +1218,19 @@
           "password": {
             "type": "string",
             "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateOrderDTO": {
+        "type": "object",
+        "properties": {
+          "orderId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "$ref": "#/components/schemas/OrderStatus"
           }
         },
         "additionalProperties": false

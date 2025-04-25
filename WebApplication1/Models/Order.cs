@@ -3,17 +3,15 @@
     EnCours,
     Prête,
     Livrée,
-    Annulée,
-    Cancelled
+    Annulée
 }
 
 public class Order
 {
     public int OrderId { get; set; }
-    public int ClientId { get; set; }  // Clé étrangère
+    public string ClientId { get; set; }    // ← string pour matcher AspNetUsers.Id
     public virtual User Client { get; set; }
-
-    public int RestaurantId { get; set; } // Clé étrangère
+    public int RestaurantId { get; set; }
     public virtual Restaurant Restaurant { get; set; }
 
     public DateTime OrderDate { get; set; } = DateTime.Now;

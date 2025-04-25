@@ -1,58 +1,67 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using WebApplication1.Service;     // pour OrderService
 
 namespace RestaurantManagement.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class OrderController : ControllerBase
     {
-        private readonly OrderRepository _orderRepository;
+        private readonly OrderService _orderService;
 
-        public OrderController(OrderRepository orderRepository)
+        // Injection de OrderService
+        public OrderController(OrderService orderService)
         {
-            _orderRepository = orderRepository;
-        }
-
-        [HttpGet]
-        public ActionResult<List<Order>> GetAllOrders()
-        {
-            return Ok(_orderRepository.GetAll());
+            _orderService = orderService;
         }
 
         [HttpGet("{id}")]
         public ActionResult<Order> GetOrderById(int id)
         {
-            var order = _orderRepository.Get(id);
+            var order = _orderService.GetOrderById(id);
             if (order == null)
                 return NotFound();
             return Ok(order);
         }
 
         [HttpPost]
-        public ActionResult CreateOrder(Order order)
+        public ActionResult<Order> CreateOrder([FromBody] CreateOrderDTO dto)
         {
-            _orderRepository.Add(order);
-            return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
+            var order = _orderService.CreateOrder(dto);
+            return CreatedAtAction(nameof(GetOrderById),
+                                   new { id = order.OrderId },
+                                   order);
         }
 
         [HttpPut("{id}")]
-        public ActionResult UpdateOrder(int id, Order order)
+        public ActionResult UpdateOrder(int id, [FromBody] UpdateOrderDTO dto)
         {
-            if (id != order.OrderId)
-                return BadRequest();
-            _orderRepository.Update(order);
-            return NoContent();
+            if (id != dto.OrderId)
+                return BadRequest("L’ID de l’URL doit correspondre à dto.OrderId.");
+
+            try
+            {
+                _orderService.UpdateOrder(id, dto.ToOrder());
+                return NoContent();
+            }
+            catch (KeyNotFoundException knf)
+            {
+                return NotFound(knf.Message);
+            }
         }
 
         [HttpDelete("{id}")]
         public ActionResult DeleteOrder(int id)
         {
-            var order = _orderRepository.Get(id);
-            if (order == null)
-                return NotFound();
-            _orderRepository.Delete(id);
-            return NoContent();
+            try
+            {
+                _orderService.DeleteOrder(id);
+                return NoContent();
+            }
+            catch (KeyNotFoundException knf)
+            {
+                return NotFound(knf.Message);
+            }
         }
     }
 }
