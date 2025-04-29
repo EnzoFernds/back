@@ -1,34 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\efernandes\\Documents\\DEV\\back\\",
+  "WorkspaceRootPath": "D:\\devoirs\\DEV\\back\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\repositories\\restaurantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\repositories\\restaurantrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|d:\\devoirs\\dev\\back\\webapplication1\\controllers\\restaurantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\restaurantcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\models\\restaurant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\restaurant.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|d:\\devoirs\\dev\\back\\webapplication1\\restaurantdbcontext\\restaurantcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\restaurantdbcontext\\restaurantcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|d:\\devoirs\\dev\\back\\webapplication1\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\controllers\\reviewcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\service\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\service\\reviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\dto\\updatereviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\dto\\updatereviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|c:\\users\\efernandes\\documents\\dev\\back\\webapplication1\\dto\\createreviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\dto\\createreviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|d:\\devoirs\\dev\\back\\webapplication1\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BE933C1F-4AAF-4BFB-B057-CE38FDEF40B6}|WebApplication1\\WebApplication1.csproj|solutionrelative:webapplication1\\models\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -43,92 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RestaurantRepository.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Repositories\\RestaurantRepository.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Repositories\\RestaurantRepository.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Repositories\\RestaurantRepository.cs*",
-              "RelativeToolTip": "WebApplication1\\Repositories\\RestaurantRepository.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABGAAAAAAAAAA==",
+              "Title": "RestaurantController.cs",
+              "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\RestaurantController.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Controllers\\RestaurantController.cs",
+              "ToolTip": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\RestaurantController.cs",
+              "RelativeToolTip": "WebApplication1\\Controllers\\RestaurantController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T14:19:49.887Z",
+              "WhenOpened": "2025-04-29T14:59:59.352Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Restaurant.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Models\\Restaurant.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Models\\Restaurant.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Models\\Restaurant.cs",
-              "RelativeToolTip": "WebApplication1\\Models\\Restaurant.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAARAAAAAAAAAA==",
+              "Title": "RestaurantContext.cs",
+              "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
+              "ToolTip": "D:\\devoirs\\DEV\\back\\WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
+              "RelativeToolTip": "WebApplication1\\RestaurantDbContext\\RestaurantContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:34:15.02Z",
+              "WhenOpened": "2025-04-29T14:52:03.309Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "ReviewController.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Controllers\\ReviewController.cs",
+              "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\ReviewController.cs",
               "RelativeDocumentMoniker": "WebApplication1\\Controllers\\ReviewController.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Controllers\\ReviewController.cs",
+              "ToolTip": "D:\\devoirs\\DEV\\back\\WebApplication1\\Controllers\\ReviewController.cs",
               "RelativeToolTip": "WebApplication1\\Controllers\\ReviewController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:31:17.748Z",
+              "WhenOpened": "2025-04-29T14:48:14.94Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Program.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Program.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Program.cs",
-              "RelativeToolTip": "WebApplication1\\Program.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAAAACQAAAAsAAAAAAAAAA==",
+              "Title": "Review.cs",
+              "DocumentMoniker": "D:\\devoirs\\DEV\\back\\WebApplication1\\Models\\Review.cs",
+              "RelativeDocumentMoniker": "WebApplication1\\Models\\Review.cs",
+              "ToolTip": "D:\\devoirs\\DEV\\back\\WebApplication1\\Models\\Review.cs",
+              "RelativeToolTip": "WebApplication1\\Models\\Review.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:29:14.025Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UpdateReviewDTO.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\DTO\\UpdateReviewDTO.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\DTO\\UpdateReviewDTO.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\DTO\\UpdateReviewDTO.cs",
-              "RelativeToolTip": "WebApplication1\\DTO\\UpdateReviewDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:28:10.518Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Service\\ReviewService.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\Service\\ReviewService.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\Service\\ReviewService.cs",
-              "RelativeToolTip": "WebApplication1\\Service\\ReviewService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:25:33.54Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CreateReviewDTO.cs",
-              "DocumentMoniker": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\DTO\\CreateReviewDTO.cs",
-              "RelativeDocumentMoniker": "WebApplication1\\DTO\\CreateReviewDTO.cs",
-              "ToolTip": "C:\\Users\\efernandes\\Documents\\DEV\\back\\WebApplication1\\DTO\\CreateReviewDTO.cs",
-              "RelativeToolTip": "WebApplication1\\DTO\\CreateReviewDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-25T13:22:54.69Z",
+              "WhenOpened": "2025-04-29T14:47:27.979Z",
               "EditorCaption": ""
             }
           ]

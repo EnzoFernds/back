@@ -40,7 +40,7 @@ namespace RestaurantManagement.Controllers
             {
                 Name = dto.Name,
                 Address = dto.Address,
-                OwnerId = dto.OwnerId
+                //OwnerId = dto.OwnerId
             };
 
             // 2) Persiste

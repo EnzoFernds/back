@@ -1,94 +1,84 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RestaurantManagement.Services;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Data;
 
-namespace RestaurantManagement.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ReviewController : ControllerBase
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ReviewController : ControllerBase
+    private readonly RestaurantContext _context;
+
+    public ReviewController(RestaurantContext context)
     {
-        private readonly ReviewService _reviewService;
+        _context = context;
+    }
 
-        public ReviewController(ReviewService reviewService)
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+    {
+        return await _context.Reviews
+            .Include(r => r.User)
+            .Include(r => r.Restaurant)
+            .ToListAsync();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Review>> GetReview(int id)
+    {
+        var review = await _context.Reviews
+            .Include(r => r.User)
+            .Include(r => r.Restaurant)
+            .FirstOrDefaultAsync(r => r.ReviewId == id);
+
+        if (review == null)
+            return NotFound();
+
+        return review;
+    }
+
+    [HttpPost]
+    public async Task<ActionResult<Review>> PostReview(Review review)
+    {
+        review.DatePosted = DateTime.UtcNow;
+        _context.Reviews.Add(review);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetReview), new { id = review.ReviewId }, review);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutReview(int id, Review review)
+    {
+        if (id != review.ReviewId)
+            return BadRequest();
+
+        _context.Entry(review).State = EntityState.Modified;
+
+        try
         {
-            _reviewService = reviewService;
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!_context.Reviews.Any(r => r.ReviewId == id))
+                return NotFound();
+            else
+                throw;
         }
 
-        // POST /api/review
-        [HttpPost]
-        public ActionResult<Review> CreateReview([FromBody] CreateReviewDTO dto)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        return NoContent();
+    }
 
-            try
-            {
-                var rev = _reviewService.CreateReview(dto);
-                return CreatedAtAction(
-                    nameof(GetReviewById),
-                    new { id = rev.ReviewId },
-                    rev
-                );
-            }
-            catch (KeyNotFoundException knf)
-            {
-                return NotFound(knf.Message);
-            }
-            catch (ArgumentException ae)
-            {
-                return BadRequest(ae.Message);
-            }
-        }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteReview(int id)
+    {
+        var review = await _context.Reviews.FindAsync(id);
+        if (review == null)
+            return NotFound();
 
-        // GET /api/review/{id}
-        [HttpGet("{id}")]
-        public ActionResult<Review> GetReviewById(int id)
-        {
-            var rev = _reviewService.GetReviewById(id);
-            if (rev == null) return NotFound();
-            return Ok(rev);
-        }
+        _context.Reviews.Remove(review);
+        await _context.SaveChangesAsync();
 
-        // GET /api/review/by-restaurant/{restoId}
-        [HttpGet("by-restaurant/{restoId}")]
-        public ActionResult<List<Review>> GetByRestaurant(int restoId)
-            => Ok(_reviewService.GetByRestaurant(restoId));
-
-        // GET /api/review/by-user/{userId}
-        [HttpGet("by-user/{userId}")]
-        public ActionResult<List<Review>> GetByUser(int userId)
-            => Ok(_reviewService.GetByUser(userId));
-
-        // PUT /api/review/{id}
-        [HttpPut("{id}")]
-        public ActionResult UpdateReview(int id, [FromBody] UpdateReviewDTO dto)
-        {
-            if (id != dto.ReviewId) return BadRequest();
-
-            try
-            {
-                _reviewService.UpdateReview(dto);
-                return NoContent();
-            }
-            catch (KeyNotFoundException knf)
-            {
-                return NotFound(knf.Message);
-            }
-        }
-
-        // DELETE /api/review/{id}
-        [HttpDelete("{id}")]
-        public ActionResult DeleteReview(int id)
-        {
-            try
-            {
-                _reviewService.DeleteReview(id);
-                return NoContent();
-            }
-            catch (KeyNotFoundException knf)
-            {
-                return NotFound(knf.Message);
-            }
-        }
+        return NoContent();
     }
 }

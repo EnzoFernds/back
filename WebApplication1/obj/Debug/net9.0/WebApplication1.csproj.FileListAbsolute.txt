@@ -318,3 +318,14 @@ C:\Users\efernandes\Documents\DEV\back\WebApplication1\obj\Debug\net9.0\refint\W
 C:\Users\efernandes\Documents\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.pdb
 C:\Users\efernandes\Documents\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.genruntimeconfig.cache
 C:\Users\efernandes\Documents\DEV\back\WebApplication1\obj\Debug\net9.0\ref\WebApplication1.dll
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.csproj.AssemblyReference.cache
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.GeneratedMSBuildEditorConfig.editorconfig
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.AssemblyInfoInputs.cache
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.AssemblyInfo.cs
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.csproj.CoreCompileInputs.cache
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.MvcApplicationPartsAssemblyInfo.cs
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.MvcApplicationPartsAssemblyInfo.cache
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.sourcelink.json
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.dll
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\refint\WebApplication1.dll
+D:\devoirs\DEV\back\WebApplication1\obj\Debug\net9.0\WebApplication1.pdb

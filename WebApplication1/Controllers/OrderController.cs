@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using RestaurantManagement.Services;
 using System.Collections.Generic;
 
 namespace RestaurantManagement.Controllers
@@ -29,12 +30,32 @@ namespace RestaurantManagement.Controllers
             return Ok(order);
         }
 
-        [HttpPost]
-        public ActionResult CreateOrder(Order order)
+        private readonly OrderService _orderService;
+
+        public OrderController(OrderService orderService)
         {
-            _orderRepository.Add(order);
+            _orderService = orderService;
+        }
+
+        [HttpPost]
+        public ActionResult CreateOrder([FromBody] CreateOrderDTO dto)
+        {
+            var order = new Order
+            {
+                ClientId = dto.UserId,
+                OrderDate = DateTime.Now,
+                Status = OrderStatus.EnCours,
+                OrderItems = dto.Items.Select(item => new OrderItem
+                {
+                    MenuItemId = item.MenuItemId,
+                    Quantity = item.Quantity
+                }).ToList()
+            };
+
+            _orderService.CreateOrder(order);
             return CreatedAtAction(nameof(GetOrderById), new { id = order.OrderId }, order);
         }
+
 
         [HttpPut("{id}")]
         public ActionResult UpdateOrder(int id, Order order)

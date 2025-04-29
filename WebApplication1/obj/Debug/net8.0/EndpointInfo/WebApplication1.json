@@ -311,17 +311,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/CreateOrderDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/CreateOrderDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Order"
+                "$ref": "#/components/schemas/CreateOrderDTO"
               }
             }
           }
@@ -647,24 +647,41 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Restaurant"
+                "$ref": "#/components/schemas/CreateRestaurantDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Restaurant"
+                "$ref": "#/components/schemas/CreateRestaurantDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Restaurant"
+                "$ref": "#/components/schemas/CreateRestaurantDTO"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Restaurant"
+                }
+              }
+            }
           }
         }
       }
@@ -832,7 +849,24 @@
         },
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Review"
+                }
+              }
+            }
           }
         }
       }
@@ -937,199 +971,59 @@
           }
         }
       }
-    },
-    "/api/User": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/User"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDTO"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDTO"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateUserDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/api/User/{id}": {
-      "get": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
-            }
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
     }
   },
   "components": {
     "schemas": {
-      "CreateUserDTO": {
+      "CreateOrderDTO": {
         "type": "object",
         "properties": {
-          "firstName": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "restaurantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateOrderItemDTO"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateOrderItemDTO": {
+        "type": "object",
+        "properties": {
+          "menuItemId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "quantity": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateRestaurantDTO": {
+        "type": "object",
+        "properties": {
+          "name": {
             "type": "string",
             "nullable": true
           },
-          "lastName": {
+          "address": {
             "type": "string",
             "nullable": true
           },
-          "email": {
+          "phone": {
             "type": "string",
             "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          },
-          "role": {
-            "$ref": "#/components/schemas/UserRole"
           }
         },
         "additionalProperties": false
@@ -1285,8 +1179,8 @@
             "nullable": true
           },
           "ownerId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "owner": {
             "$ref": "#/components/schemas/User"
@@ -1331,7 +1225,8 @@
           },
           "restaurantId": {
             "type": "integer",
-            "format": "int32"
+            "format": "int32",
+            "nullable": true
           },
           "restaurant": {
             "$ref": "#/components/schemas/Restaurant"
@@ -1443,10 +1338,6 @@
             "type": "integer",
             "format": "int32"
           },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
-          },
           "firstName": {
             "type": "string",
             "nullable": true
@@ -1456,10 +1347,6 @@
             "nullable": true
           },
           "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
             "type": "string",
             "nullable": true
           },
