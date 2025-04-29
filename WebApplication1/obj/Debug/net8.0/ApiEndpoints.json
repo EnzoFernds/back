@@ -434,8 +434,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "review",
-        "Type": "Review",
+        "Name": "dto",
+        "Type": "CreateReviewDTO",
         "IsRequired": true
       }
     ],
@@ -467,7 +467,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Review",
+        "Type": "ReviewReadDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -491,8 +491,8 @@
         "IsRequired": true
       },
       {
-        "Name": "review",
-        "Type": "Review",
+        "Name": "dto",
+        "Type": "UpdateReviewDTO",
         "IsRequired": true
       }
     ],

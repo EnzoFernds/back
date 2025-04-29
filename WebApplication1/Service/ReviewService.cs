@@ -56,7 +56,7 @@
             return _reviewRepo.GetByRestaurantId(restaurantId);
         }
 
-        public List<Review> GetByUser(int userId)
+        public List<Review> GetByUser(string userId)
         {
             return _reviewRepo.GetByUserId(userId);
         }
@@ -67,7 +67,8 @@
             if (existing == null)
                 throw new KeyNotFoundException($"Review {dto.ReviewId} introuvable.");
 
-            existing = dto.ToEntity(existing);
+            existing.Rating = dto.Rating;
+            existing.Comment = dto.Comment;
             _reviewRepo.Update(existing);
         }
 

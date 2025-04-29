@@ -832,17 +832,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/CreateReviewDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/CreateReviewDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/CreateReviewDTO"
               }
             }
           }
@@ -893,17 +893,17 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/Review"
+                  "$ref": "#/components/schemas/ReviewReadDTO"
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Review"
+                  "$ref": "#/components/schemas/ReviewReadDTO"
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Review"
+                  "$ref": "#/components/schemas/ReviewReadDTO"
                 }
               }
             }
@@ -929,17 +929,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/UpdateReviewDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/UpdateReviewDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Review"
+                "$ref": "#/components/schemas/UpdateReviewDTO"
               }
             }
           }
@@ -979,8 +979,8 @@
         "type": "object",
         "properties": {
           "userId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "restaurantId": {
             "type": "integer",
@@ -1022,6 +1022,36 @@
             "nullable": true
           },
           "phone": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateReviewDTO": {
+        "required": [
+          "rating",
+          "restaurantId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "restaurantId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "maximum": 5,
+            "minimum": 1,
+            "type": "integer",
+            "format": "int32"
+          },
+          "commentaire": {
+            "maxLength": 1000,
             "type": "string",
             "nullable": true
           }
@@ -1086,8 +1116,8 @@
             "format": "int32"
           },
           "clientId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "client": {
             "$ref": "#/components/schemas/User"
@@ -1217,8 +1247,8 @@
             "format": "int32"
           },
           "userId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "nullable": true
           },
           "user": {
             "$ref": "#/components/schemas/User"
@@ -1242,6 +1272,36 @@
           "datePosted": {
             "type": "string",
             "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ReviewReadDTO": {
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
+            "type": "string",
+            "nullable": true
+          },
+          "datePosted": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "restaurantName": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1276,6 +1336,24 @@
             "nullable": true
           },
           "password": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateReviewDTO": {
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rating": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "comment": {
             "type": "string",
             "nullable": true
           }

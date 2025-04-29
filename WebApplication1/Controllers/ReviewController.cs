@@ -23,7 +23,7 @@ public class ReviewController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Review>> GetReview(int id)
+    public async Task<ActionResult<ReviewReadDTO>> GetReview(int id)
     {
         var review = await _context.Reviews
             .Include(r => r.User)
@@ -33,41 +33,58 @@ public class ReviewController : ControllerBase
         if (review == null)
             return NotFound();
 
-        return review;
+        var dto = new ReviewReadDTO
+        {
+            ReviewId = review.ReviewId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            DatePosted = review.DatePosted,
+            UserName = review.User?.UserName,
+            RestaurantName = review.Restaurant?.Name
+        };
+
+        return dto;
     }
 
+
     [HttpPost]
-    public async Task<ActionResult<Review>> PostReview(Review review)
+    public async Task<ActionResult<Review>> PostReview(CreateReviewDTO dto)
     {
-        review.DatePosted = DateTime.UtcNow;
+        var review = new Review
+        {
+            UserId = dto.UserId,
+            RestaurantId = dto.RestaurantId,
+            Rating = dto.Rating,
+            Comment = dto.Commentaire,
+            DatePosted = DateTime.UtcNow
+        };
+
         _context.Reviews.Add(review);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction(nameof(GetReview), new { id = review.ReviewId }, review);
     }
 
+
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutReview(int id, Review review)
+    public async Task<IActionResult> PutReview(int id, UpdateReviewDTO dto)
     {
-        if (id != review.ReviewId)
+        if (id != dto.ReviewId)
             return BadRequest();
 
-        _context.Entry(review).State = EntityState.Modified;
+        var review = await _context.Reviews.FindAsync(id);
+        if (review == null)
+            return NotFound();
 
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!_context.Reviews.Any(r => r.ReviewId == id))
-                return NotFound();
-            else
-                throw;
-        }
+        // Mise à jour
+        review.Rating = dto.Rating;
+        review.Comment = dto.Comment;
+
+        await _context.SaveChangesAsync();
 
         return NoContent();
     }
+
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteReview(int id)

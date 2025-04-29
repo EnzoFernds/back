@@ -6,7 +6,7 @@ namespace RestaurantManagement
 {
     public class OrderRepository : Repository<Order>
     {
-        public List<Order> GetByClientId(int clientId)
+        public List<Order> GetByClientId(string clientId)
         {
             return _context.Where(o => o.ClientId == clientId).ToList();
         }

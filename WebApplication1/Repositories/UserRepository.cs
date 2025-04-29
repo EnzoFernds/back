@@ -10,5 +10,10 @@ namespace RestaurantManagement
         {
             return _context.FirstOrDefault(u => u.Email == email);
         }
+
+        public User Get(string id)
+        {
+            return _context.FirstOrDefault(u => u.Id == id);
+        }
     }
 }

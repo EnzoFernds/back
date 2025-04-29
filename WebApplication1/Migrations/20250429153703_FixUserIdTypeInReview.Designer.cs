@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Data;
 
@@ -11,9 +12,11 @@ using WebApplication1.Data;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(RestaurantContext))]
-    partial class RestaurantContextModelSnapshot : ModelSnapshot
+    [Migration("20250429153703_FixUserIdTypeInReview")]
+    partial class FixUserIdTypeInReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,8 +175,10 @@ namespace WebApplication1.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderId"));
 
-                    b.Property<string>("ClientId")
-                        .IsRequired()
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientId1")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("OrderDate")
@@ -190,7 +195,7 @@ namespace WebApplication1.Migrations
 
                     b.HasKey("OrderId");
 
-                    b.HasIndex("ClientId");
+                    b.HasIndex("ClientId1");
 
                     b.HasIndex("RestaurantId");
 
@@ -468,9 +473,7 @@ namespace WebApplication1.Migrations
                 {
                     b.HasOne("User", "Client")
                         .WithMany("Orders")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId1");
 
                     b.HasOne("Restaurant", "Restaurant")
                         .WithMany("Orders")
