@@ -2,6 +2,7 @@
 
 public class CreateOrderDTO
 {
-    public int UserId { get; set; }
+    public string UserId { get; set; }
+    public int RestaurantId { get; set; }
     public List<CreateOrderItemDTO> Items { get; set; }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace WebApplication1.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FixOwnerMapping : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -170,17 +170,17 @@ namespace WebApplication1.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OwnerId = table.Column<int>(type: "int", nullable: false),
-                    OwnerId1 = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                    OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Restaurants", x => x.RestaurantId);
                     table.ForeignKey(
-                        name: "FK_Restaurants_AspNetUsers_OwnerId1",
-                        column: x => x.OwnerId1,
+                        name: "FK_Restaurants_AspNetUsers_OwnerId",
+                        column: x => x.OwnerId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -213,8 +213,7 @@ namespace WebApplication1.Migrations
                 {
                     OrderId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ClientId = table.Column<int>(type: "int", nullable: false),
-                    ClientId1 = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    ClientId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RestaurantId = table.Column<int>(type: "int", nullable: false),
                     OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -224,10 +223,11 @@ namespace WebApplication1.Migrations
                 {
                     table.PrimaryKey("PK_Orders", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Orders_AspNetUsers_ClientId1",
-                        column: x => x.ClientId1,
+                        name: "FK_Orders_AspNetUsers_ClientId",
+                        column: x => x.ClientId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Orders_Restaurants_RestaurantId",
                         column: x => x.RestaurantId,
@@ -347,9 +347,9 @@ namespace WebApplication1.Migrations
                 column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Orders_ClientId1",
+                name: "IX_Orders_ClientId",
                 table: "Orders",
-                column: "ClientId1");
+                column: "ClientId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_RestaurantId",
@@ -357,9 +357,9 @@ namespace WebApplication1.Migrations
                 column: "RestaurantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Restaurants_OwnerId1",
+                name: "IX_Restaurants_OwnerId",
                 table: "Restaurants",
-                column: "OwnerId1");
+                column: "OwnerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reviews_RestaurantId",
