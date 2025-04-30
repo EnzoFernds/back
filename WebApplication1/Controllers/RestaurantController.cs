@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using WebApplication1.Data;
 
 namespace RestaurantManagement.Controllers
 {
@@ -8,12 +10,14 @@ namespace RestaurantManagement.Controllers
     public class RestaurantController : ControllerBase
     {
         private readonly RestaurantRepository _restaurantRepository;
-
-        public RestaurantController(RestaurantRepository restaurantRepository)
+        private readonly RestaurantContext _context;
+        public RestaurantController(RestaurantRepository restaurantRepository, RestaurantContext context)
         {
             _restaurantRepository = restaurantRepository;
-        }
+            _context = context;
 
+        }
+        
         [HttpGet]
         public ActionResult<List<Restaurant>> GetAllRestaurants()
         {
@@ -21,37 +25,67 @@ namespace RestaurantManagement.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Restaurant> GetRestaurantById(int id)
+        public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {
-            var restaurant = _restaurantRepository.Get(id);
+            var restaurant = await _context.Restaurants.FindAsync(id);
+
             if (restaurant == null)
+            {
+                Console.WriteLine($"Restaurant {id} introuvable !");
                 return NotFound();
-            return Ok(restaurant);
+            }
+
+            return restaurant;
         }
+
 
         [HttpPost]
-        public ActionResult CreateRestaurant(Restaurant restaurant)
+        public async Task<ActionResult<Restaurant>> PostRestaurant(CreateRestaurantDTO dto)
         {
-            _restaurantRepository.Add(restaurant);
-            return CreatedAtAction(nameof(GetRestaurantById), new { id = restaurant.RestaurantId }, restaurant);
+            var restaurant = new Restaurant
+            {
+                Name = dto.Name,
+                Address = dto.Address,
+                OwnerId = dto.OwnerId
+            };
+
+            _context.Restaurants.Add(restaurant);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction(nameof(GetRestaurant), new { id = restaurant.RestaurantId }, restaurant);
         }
 
+
         [HttpPut("{id}")]
-        public ActionResult UpdateRestaurant(int id, Restaurant restaurant)
+        public async Task<IActionResult> PutRestaurant(int id, UpdateRestaurantDTO dto)
         {
-            if (id != restaurant.RestaurantId)
+            if (id != dto.RestaurantId)
                 return BadRequest();
-            _restaurantRepository.Update(restaurant);
+
+            var restaurant = await _context.Restaurants.FindAsync(id);
+            if (restaurant == null)
+                return NotFound();
+
+            restaurant.Name = dto.Name;
+            restaurant.Address = dto.Address;
+            restaurant.OwnerId = dto.OwnerId;
+
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
 
+
         [HttpDelete("{id}")]
-        public ActionResult DeleteRestaurant(int id)
+        public async Task<IActionResult> DeleteRestaurant(int id)
         {
-            var restaurant = _restaurantRepository.Get(id);
+            var restaurant = await _context.Restaurants.FindAsync(id);
             if (restaurant == null)
                 return NotFound();
-            _restaurantRepository.Delete(id);
+
+            _context.Restaurants.Remove(restaurant);
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
     }
