@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using WebApplication1.Data;
+using WebApplication1.DTO;
 
 namespace RestaurantManagement.Controllers
 {
@@ -8,16 +11,12 @@ namespace RestaurantManagement.Controllers
     public class OrderItemController : ControllerBase
     {
         private readonly OrderItemRepository _orderItemRepository;
+        private readonly RestaurantContext _context;
 
-        public OrderItemController(OrderItemRepository orderItemRepository)
+        public OrderItemController(OrderItemRepository orderItemRepository, RestaurantContext context)
         {
             _orderItemRepository = orderItemRepository;
-        }
-
-        [HttpGet]
-        public ActionResult<List<OrderItem>> GetAllOrderItems()
-        {
-            return Ok(_orderItemRepository.GetAll());
+            _context = context;
         }
 
         [HttpGet("{id}")]
@@ -29,29 +28,35 @@ namespace RestaurantManagement.Controllers
             return Ok(orderItem);
         }
 
-        [HttpPost]
-        public ActionResult CreateOrderItem(OrderItem orderItem)
-        {
-            _orderItemRepository.Add(orderItem);
-            return CreatedAtAction(nameof(GetOrderItemById), new { id = orderItem.OrderItemId }, orderItem);
-        }
-
         [HttpPut("{id}")]
-        public ActionResult UpdateOrderItem(int id, OrderItem orderItem)
+        public async Task<IActionResult> PutOrderItem(int id, UpdateOrderItemDTO dto)
         {
-            if (id != orderItem.OrderItemId)
+            if (id != dto.OrderItemId)
                 return BadRequest();
-            _orderItemRepository.Update(orderItem);
+
+            var item = await _context.OrderItems.FindAsync(id);
+            if (item == null)
+                return NotFound();
+
+            item.Quantity = dto.Quantity;
+            item.SubTotal = item.Quantity * (await _context.MenuItems
+                .Where(m => m.MenuItemId == item.MenuItemId)
+                .Select(m => m.Price)
+                .FirstOrDefaultAsync());
+
+            await _context.SaveChangesAsync();
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeleteOrderItem(int id)
+        public async Task<IActionResult> DeleteOrderItem(int id)
         {
-            var orderItem = _orderItemRepository.Get(id);
-            if (orderItem == null)
+            var item = await _context.OrderItems.FindAsync(id);
+            if (item == null)
                 return NotFound();
-            _orderItemRepository.Delete(id);
+
+            _context.OrderItems.Remove(item);
+            await _context.SaveChangesAsync();
             return NoContent();
         }
     }
