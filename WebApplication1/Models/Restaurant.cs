@@ -4,7 +4,7 @@
     public string Name { get; set; }
     public string Address { get; set; }
 
-    public int OwnerId { get; set; }
+    public string OwnerId { get; set; }
     public virtual User Owner { get; set; }
 
     public virtual List<MenuItem> MenuItems { get; set; } = new List<MenuItem>();

@@ -58,7 +58,7 @@ namespace RestaurantManagement.Services
             if (order == null)
                 throw new Exception("Order not found.");
 
-            order.Status = OrderStatus.Cancelled;
+            order.Status = OrderStatus.Annulée;
             _orderRepository.Update(order);
         }
     }
