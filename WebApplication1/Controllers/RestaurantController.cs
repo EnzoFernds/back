@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using WebApplication1.Data;
@@ -55,7 +56,7 @@ namespace RestaurantManagement.Controllers
             return CreatedAtAction(nameof(GetRestaurant), new { id = restaurant.RestaurantId }, restaurant);
         }
 
-
+        [Authorize(Roles = "Restaurateur")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRestaurant(int id, UpdateRestaurantDTO dto)
         {
@@ -75,7 +76,7 @@ namespace RestaurantManagement.Controllers
             return NoContent();
         }
 
-
+        [Authorize(Roles = "Administrateur")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRestaurant(int id)
         {
