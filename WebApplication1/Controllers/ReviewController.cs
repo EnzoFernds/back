@@ -1,58 +1,101 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using WebApplication1.Data;
 
-namespace RestaurantManagement.Controllers
+[Route("api/[controller]")]
+[ApiController]
+public class ReviewController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReviewController : ControllerBase
+    private readonly RestaurantContext _context;
+
+    public ReviewController(RestaurantContext context)
     {
-        private readonly ReviewRepository _reviewRepository;
+        _context = context;
+    }
 
-        public ReviewController(ReviewRepository reviewRepository)
-        {
-            _reviewRepository = reviewRepository;
-        }
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+    {
+        return await _context.Reviews
+            .Include(r => r.User)
+            .Include(r => r.Restaurant)
+            .ToListAsync();
+    }
 
-        [HttpGet]
-        public ActionResult<List<Review>> GetAllReviews()
-        {
-            return Ok(_reviewRepository.GetAll());
-        }
+    [HttpGet("{id}")]
+    public async Task<ActionResult<ReviewReadDTO>> GetReview(int id)
+    {
+        var review = await _context.Reviews
+            .Include(r => r.User)
+            .Include(r => r.Restaurant)
+            .FirstOrDefaultAsync(r => r.ReviewId == id);
 
-        [HttpGet("{id}")]
-        public ActionResult<Review> GetReviewById(int id)
-        {
-            var review = _reviewRepository.Get(id);
-            if (review == null)
-                return NotFound();
-            return Ok(review);
-        }
+        if (review == null)
+            return NotFound();
 
-        [HttpPost]
-        public ActionResult CreateReview(Review review)
+        var dto = new ReviewReadDTO
         {
-            _reviewRepository.Add(review);
-            return CreatedAtAction(nameof(GetReviewById), new { id = review.ReviewId }, review);
-        }
+            ReviewId = review.ReviewId,
+            Rating = review.Rating,
+            Comment = review.Comment,
+            DatePosted = review.DatePosted,
+            UserName = review.User?.UserName,
+            RestaurantName = review.Restaurant?.Name
+        };
 
-        [HttpPut("{id}")]
-        public ActionResult UpdateReview(int id, Review review)
-        {
-            if (id != review.ReviewId)
-                return BadRequest();
-            _reviewRepository.Update(review);
-            return NoContent();
-        }
+        return dto;
+    }
 
-        [HttpDelete("{id}")]
-        public ActionResult DeleteReview(int id)
+
+    [HttpPost]
+    public async Task<ActionResult<Review>> PostReview(CreateReviewDTO dto)
+    {
+        var review = new Review
         {
-            var review = _reviewRepository.Get(id);
-            if (review == null)
-                return NotFound();
-            _reviewRepository.Delete(id);
-            return NoContent();
-        }
+            UserId = dto.UserId,
+            RestaurantId = dto.RestaurantId,
+            Rating = dto.Rating,
+            Comment = dto.Commentaire,
+            DatePosted = DateTime.UtcNow
+        };
+
+        _context.Reviews.Add(review);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetReview), new { id = review.ReviewId }, review);
+    }
+
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutReview(int id, UpdateReviewDTO dto)
+    {
+        if (id != dto.ReviewId)
+            return BadRequest();
+
+        var review = await _context.Reviews.FindAsync(id);
+        if (review == null)
+            return NotFound();
+
+        // Mise à jour
+        review.Rating = dto.Rating;
+        review.Comment = dto.Comment;
+
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+    }
+
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteReview(int id)
+    {
+        var review = await _context.Reviews.FindAsync(id);
+        if (review == null)
+            return NotFound();
+
+        _context.Reviews.Remove(review);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
     }
 }

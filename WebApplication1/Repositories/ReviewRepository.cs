@@ -11,7 +11,7 @@ namespace RestaurantManagement
             return _context.Where(r => r.RestaurantId == restaurantId).ToList();
         }
 
-        public List<Review> GetByUserId(int userId)
+        public List<Review> GetByUserId(string userId)
         {
             return _context.Where(r => r.UserId == userId).ToList();
         }

@@ -56,7 +56,7 @@ namespace RestaurantManagement.Controllers
             return CreatedAtAction(nameof(GetRestaurant), new { id = restaurant.RestaurantId }, restaurant);
         }
 
-        [Authorize(Roles = "Restaurateur")]
+        //[Authorize(Roles = "Restaurateur")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRestaurant(int id, UpdateRestaurantDTO dto)
         {
@@ -76,7 +76,7 @@ namespace RestaurantManagement.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Administrateur")]
+        //[Authorize(Roles = "Administrateur")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRestaurant(int id)
         {
