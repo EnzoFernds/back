@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -52,7 +53,14 @@ namespace WebApplication1.Service
 
         public async Task<string> Login(LoginDTO login)
         {
-            var user = await _userManager.FindByNameAsync(login.Email);
+            // Normaliser l'email pour éviter les problèmes de casse
+            var normalizedEmail = login.Email.ToUpperInvariant();
+
+            // Recherche du user par NormalizedEmail (plus fiable que FindByEmailAsync)
+            var user = await _userManager.Users
+                .Where(u => u.NormalizedEmail == normalizedEmail)
+                .FirstOrDefaultAsync();
+
             if (user == null)
             {
                 throw new UnauthorizedAccessException($"Utilisateur introuvable : {login.Email}");
@@ -66,6 +74,7 @@ namespace WebApplication1.Service
 
             return GenerateJwtToken(user);
         }
+
 
 
         public string GenerateJwtToken(User user) 
