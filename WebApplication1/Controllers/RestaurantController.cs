@@ -25,6 +25,16 @@ namespace RestaurantManagement.Controllers
             return Ok(_restaurantRepository.GetAll());
         }
 
+        [HttpGet("by-owner/{ownerId}")]
+        public async Task<ActionResult<List<Restaurant>>> GetRestaurantsByOwner(string ownerId)
+        {
+            var restaurants = await _context.Restaurants
+                .Where(r => r.OwnerId == ownerId)
+                .ToListAsync();
+
+            return Ok(restaurants);
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<Restaurant>> GetRestaurant(int id)
         {

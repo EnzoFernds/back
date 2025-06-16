@@ -10,5 +10,10 @@ namespace RestaurantManagement
         {
             return _context.Where(r => r.OwnerId == ownerId).ToList();
         }
+
+        public List<Restaurant> GetAll()
+        {
+            return _context.ToList();
+        }
     }
 }
